@@ -3,8 +3,8 @@ import { writeFileSync } from "fs";
 import { checkHasOwn, coloredLog } from "./utils.js";
 
 // const ELASTICNODE = '';
-const ELASTICNODE_NEW = "new_node_url";
 const NEW_NODE_URL = "new_node_url";
+const ELASTICNODE = "ELASTICNODE";
 const REGION = "us-east-2";
 
 const lambda = new Lambda({
@@ -52,8 +52,7 @@ async function updateEnvironmentVariables(functionName, oldVars, newVars) {
             result &&
             result?.Environment &&
             result?.Environment?.Variables &&
-            checkHasOwn(result?.Environment?.Variables, "ELASTICNODE") &&
-            result.Environment.Variables?.ELASTICNODE === ELASTICNODE_NEW
+            checkHasOwn(result?.Environment?.Variables, ELASTICNODE)
         ) {
             console.log(`Sucessful for ${functionName}`);
         }
